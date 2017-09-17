@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 public class Slider {
     public static void main(String[] args) {
         try {
-            String[][] puzzle = readPuzzle("puzzle.txt");
+            char[][] puzzle = readPuzzle("puzzle.txt");
             solvePuzzle(puzzle);
         } catch (Exception e) {
             e.printStackTrace();
@@ -18,13 +18,13 @@ public class Slider {
      * @return                       2D array representation of puzzle
      * @throws FileNotFoundException
      */
-    public static String[][] readPuzzle(String filename) throws FileNotFoundException {
+    public static char[][] readPuzzle(String filename) throws FileNotFoundException {
         Scanner scan;
         scan = new Scanner(new BufferedReader(new FileReader(filename)));
-        String[][] puzzle = new String[4][4];
+        char[][] puzzle = new char[4][4];
         for (int row = 0; row < 4; row++) {
             for (int col = 0; col < 4; col++) {
-                puzzle[row][col] = scan.next();
+                puzzle[row][col] = scan.next().charAt(0);
             }
         }
         return puzzle;
@@ -34,16 +34,16 @@ public class Slider {
      * Find the manhattan distance between a letter's position and its target position
      * @param  row    row of the letter's current position
      * @param  col    column of the letter's current position
-     * @param  letter the letter at the current position
+     * @param  puzzle the entire puzzle
      * @return        the manhattan distance
      */
-    public static int manhattanDistance(int row, int col, String letter) {
+    public static int manhattanDistance(int row, int col, char[][] puzzle) {
         // Map letter to a value from 0-15 (A=0, B=1, ..., O=14, S=15).
-        int target = Math.min((int) letter.charAt(0) - 65, 15);
+        int target = Math.min((int) puzzle[row][col] - 65, 15);
 
         int targetRow = target / 4;
         int targetCol = target % 4;
-        
+
         int distance = Math.abs(targetRow - row) + Math.abs(targetCol - col);
         return distance;
     }
@@ -52,12 +52,12 @@ public class Slider {
      * Prints the puzzle as a square, replacing S with a blank space
      * @param puzzle 2D array of letters
      */
-    public static void printPuzzle(String[][] puzzle) {
-        for (String[] row : puzzle) {
-            for (String piece : row) {
+    public static void printPuzzle(char[][] puzzle) {
+        for (char[] row : puzzle) {
+            for (char piece : row) {
                 // print a gap instead of S
-                if (piece.equals("S")) {
-                    piece = " ";
+                if (piece == 'S') {
+                    piece = ' ';
                 }
                 System.out.print(piece + " ");
             }
@@ -65,7 +65,7 @@ public class Slider {
         }
     }
 
-    public static void solvePuzzle(String[][] puzzle) {
+    public static void solvePuzzle(char[][] puzzle) {
         printPuzzle(puzzle);
     }
 }
