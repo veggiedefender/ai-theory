@@ -49,8 +49,23 @@ public class Slider {
     }
 
     /**
+     * Find the total manhattan distance of each piece from its target position
+     * @param  puzzle 2D array of letters representing the puzzle
+     * @return        total cost of the given state
+     */
+    public static int cost(char[][] puzzle) {
+        int totalCost = 0;
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 4; col++) {
+                totalCost += manhattanDistance(row, col, puzzle);
+            }
+        }
+        return totalCost;
+    }
+
+    /**
      * Prints the puzzle as a square, replacing S with a blank space
-     * @param puzzle 2D array of letters
+     * @param puzzle 2D array of letters representing the puzzle
      */
     public static void printPuzzle(char[][] puzzle) {
         for (char[] row : puzzle) {
