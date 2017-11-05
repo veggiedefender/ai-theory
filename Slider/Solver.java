@@ -29,7 +29,6 @@ public class Solver {
         PriorityQueue<SliderPuzzle> willVisit = new PriorityQueue<SliderPuzzle>();
         HashMap<SliderPuzzle, SliderPuzzle> cameFrom = new HashMap<SliderPuzzle, SliderPuzzle>();
 
-        willVisit.add(puzzle);
         puzzle.setDistance(0);
         willVisit.add(puzzle);
 
@@ -46,10 +45,6 @@ public class Solver {
                     continue;
                 }
 
-                if (!willVisit.contains(neighbor)) {
-                    willVisit.add(neighbor);
-                }
-
                 int tentativeDistance = current.getDistance() + 1;
                 if (tentativeDistance >= neighbor.getDistance()) {
                     continue;
@@ -57,6 +52,10 @@ public class Solver {
 
                 cameFrom.put(neighbor, current);
                 neighbor.setDistance(tentativeDistance);
+
+                if (!willVisit.contains(neighbor)) {
+                    willVisit.add(neighbor);
+                }
             }
         }
         System.err.println("The puzzle is unsolvable.");
