@@ -5,7 +5,7 @@ The 4x4 slide puzzle was described in the page about heuristics.
 Write a program which implements A* with the Manhattan Distance heuristic to solve a 4x4 slide puzzle.
 
 ## File Format
-The puzzle will be read in from a file called puzzle.txt using the following format:
+The puzzle will be read in from a file called `puzzle.txt` using the following format:
 
 The file should only contain the capital letters A through O (the first 15 letters of the alphabet) and a capital S to represent the space in the puzzle. Each letter should only appear once in the file, and they should be seperated by spaces or newlines (use a default Scanner in java). The sequence of letters in the file represent each row of the puzzle from left to right, top to bottom. Therefore, the first letter in the file represents the top left square of the puzzle. For example, a file which represents the example puzzle from the heuristics page would look like (Assuming A=1, B=2, C=3, etc):
 
