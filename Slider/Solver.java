@@ -22,7 +22,7 @@ public class Solver {
 
     /**
      * Solve the puzzle using A* search
-     * @param puzzle [description]
+     * @param puzzle puzzle in unsolved configuration
      */
     public static void solvePuzzle(SliderPuzzle puzzle) {
         HashSet<SliderPuzzle> visited = new HashSet<SliderPuzzle>();
