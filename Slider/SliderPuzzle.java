@@ -121,7 +121,7 @@ public class SliderPuzzle implements Comparable<SliderPuzzle> {
                 continue;
             }
             // calculate manhattan distance
-            int target = Math.min((int) piece - 65, 15);
+            int target = (int) piece - 65;
             int distanceY = Math.abs(i / 4 - target / 4);
             int distanceX = Math.abs(i % 4 - target % 4);
 
