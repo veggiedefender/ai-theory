@@ -72,34 +72,34 @@ public class SliderPuzzle implements Comparable<SliderPuzzle> {
         ArrayList<SliderPuzzle> neighbors = new ArrayList<SliderPuzzle>();
         // left
         if (this.freeSpace % 4 != 0) {
-            neighbors.add(new SliderPuzzle(swap(freeSpace - 1)));
+            neighbors.add(new SliderPuzzle(shift(freeSpace - 1)));
         }
 
         // right
         if ((this.freeSpace + 1) % 4 != 0) {
-            neighbors.add(new SliderPuzzle(swap(freeSpace + 1)));
+            neighbors.add(new SliderPuzzle(shift(freeSpace + 1)));
         }
 
         // up
         if (this.freeSpace >= 4) {
-            neighbors.add(new SliderPuzzle(swap(freeSpace - 4)));
+            neighbors.add(new SliderPuzzle(shift(freeSpace - 4)));
         }
 
         // down
         if (this.freeSpace <= 11) {
-            neighbors.add(new SliderPuzzle(swap(freeSpace + 4)));
+            neighbors.add(new SliderPuzzle(shift(freeSpace + 4)));
         }
 
         return neighbors;
     }
 
-    private String swap(int target) {
     /**
      * Utility function used by getNeighbors to shift a piece into
      * the empty spot, creating an empty spot where it was
      * @param  target index of piece to shift
      * @return        the next puzzle state with shifted piece
      */
+    private String shift(int target) {
         char[] chars = this.puzzle.toCharArray();
         char temp = chars[target];
         chars[target] = chars[this.freeSpace];
