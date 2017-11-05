@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
 
+/**
+ * Solve a 4x4 slider puzzle read in from file puzzle.txt
+ * @author Jesse Li
+ */
 public class Solver {
     public static void main(String[] args) {
         try {
@@ -16,6 +20,10 @@ public class Solver {
         }
     }
 
+    /**
+     * Solve the puzzle using A* search
+     * @param puzzle [description]
+     */
     public static void solvePuzzle(SliderPuzzle puzzle) {
         HashSet<SliderPuzzle> visited = new HashSet<SliderPuzzle>();
         PriorityQueue<SliderPuzzle> willVisit = new PriorityQueue<SliderPuzzle>();
@@ -54,13 +62,18 @@ public class Solver {
         System.err.println("The puzzle is unsolvable.");
     }
 
+    /**
+     * Print out the optimal solution given by A*
+     * @param cameFrom Map containing shortest solution
+     * @param current  Goal/last state in solution
+     */
     public static void reconstructPath(HashMap<SliderPuzzle, SliderPuzzle> cameFrom, SliderPuzzle current) {
         ArrayList<SliderPuzzle> totalPath = new ArrayList<SliderPuzzle>();
         totalPath.add(current);
 
         while (cameFrom.containsKey(current)) {
             current = cameFrom.get(current);
-            totalPath.add(current);
+            totalPath.add(0, current);
         }
 
         for (SliderPuzzle puzzle : totalPath) {

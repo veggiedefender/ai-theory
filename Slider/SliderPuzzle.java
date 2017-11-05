@@ -39,19 +39,35 @@ public class SliderPuzzle implements Comparable<SliderPuzzle> {
         freeSpace = getFreeSpace();
     }
 
+    /**
+     * Set the distance and update the total cost of the state
+     * @param distance new distance (in steps) from the start
+     */
     public void setDistance(int distance) {
         this.distance = distance;
         this.cost = this.distance + this.heuristic;
     }
 
+    /**
+     * Get the distance
+     * @return distance
+     */
     public int getDistance() {
         return distance;
     }
 
+    /**
+     * Get the total cost (distance + heuristic) of the current puzzle state
+     * @return total cost
+     */
     public int getCost() {
         return cost;
     }
 
+    /**
+     * Get all possible next moves in the puzzle
+     * @return next moves
+     */
     public ArrayList<SliderPuzzle> getNeighbors() {
         ArrayList<SliderPuzzle> neighbors = new ArrayList<SliderPuzzle>();
         // left
@@ -78,6 +94,12 @@ public class SliderPuzzle implements Comparable<SliderPuzzle> {
     }
 
     private String swap(int target) {
+    /**
+     * Utility function used by getNeighbors to shift a piece into
+     * the empty spot, creating an empty spot where it was
+     * @param  target index of piece to shift
+     * @return        the next puzzle state with shifted piece
+     */
         char[] chars = this.puzzle.toCharArray();
         char temp = chars[target];
         chars[target] = chars[this.freeSpace];
